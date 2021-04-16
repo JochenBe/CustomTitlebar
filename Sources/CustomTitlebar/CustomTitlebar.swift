@@ -25,8 +25,8 @@ where TitlebarContent : View, WindowContent : View {
         @ViewBuilder content: () -> WindowContent
     ) {
         self.height = withToolbar
-            ? Titlebar.height.withToolbar
-            : Titlebar.height.withoutToolbar
+            ? TitlebarHeight.withToolbar
+            : TitlebarHeight.withoutToolbar
         self.showDivider = showDivider
         self.ignoreIsKeyWindow = ignoreIsKeyWindow
         self.titlebar = titlebar
@@ -71,7 +71,7 @@ struct CustomTitlebar_Previews: PreviewProvider {
             Text("Hello, World!")
         }
         .preferredColorScheme(.light)
-        .padding(.top, Titlebar.height.withoutToolbar)
+        .padding(.top, TitlebarHeight.withoutToolbar)
         
         CustomTitlebar(
             Text("Titlebar"),
@@ -81,6 +81,6 @@ struct CustomTitlebar_Previews: PreviewProvider {
         }
         .environmentObject(ObservableWindowDelegate())
         .preferredColorScheme(.dark)
-        .padding(.top, Titlebar.height.withToolbar)
+        .padding(.top, TitlebarHeight.withToolbar)
     }
 }

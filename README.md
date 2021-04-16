@@ -55,16 +55,14 @@ init(
 )
 ```
 
-### Titlebar
+### TitlebarHeight
 
-An object containing **titlebar constants**.
+An object containing **titlebar height constants**.
 
 ```Swift
-struct Titlebar {
-    struct height {
-        static var withToolbar: CGFloat { get }
-        static var withoutToolbar: CGFloat { get }
-    }
+struct TitlebarHeight {
+    static var withToolbar: CGFloat { get }
+    static var withoutToolbar: CGFloat { get }
 }
 ```
 
