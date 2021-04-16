@@ -34,6 +34,7 @@ public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Con
                         .padding(.top, -height)
                     
                     TitlebarDivider()
+                        .padding(.top, -8.0)
                     
                     Spacer()
                 }
