@@ -18,10 +18,3 @@ public class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObj
         isKeyWindow = false
     }
 }
-
-class DefaultObservableWindowDelegate: ObservableWindowDelegate {
-    override init() {
-        super.init()
-        self.isKeyWindow = true
-    }
-}
