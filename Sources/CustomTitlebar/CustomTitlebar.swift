@@ -26,7 +26,7 @@ public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Con
         GeometryReader { geometry in
             ZStack {
                 content
-                    .frame(maxHeight: .infinity)
+                    .frame(maxHeight: geometry.size.height)
                 
                 VStack {
                     titlebar
