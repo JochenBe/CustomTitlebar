@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Content : View {
+public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Content : View {
     private let height: CGFloat
     private let titlebar: Titlebar
     private let content: Content
@@ -22,7 +22,7 @@ struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Content : 
         self.content = content()
     }
     
-    var body: some View {
+    public var body: some View {
         GeometryReader { geometry in
             ZStack {
                 content
