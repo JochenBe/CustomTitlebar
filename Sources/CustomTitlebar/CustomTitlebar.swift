@@ -12,7 +12,7 @@ public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Con
     private let titlebar: Titlebar
     private let content: Content
     
-    init(
+    public init(
         titlebar: Titlebar,
         withToolbar: Bool = false,
         @ViewBuilder content: () -> Content
