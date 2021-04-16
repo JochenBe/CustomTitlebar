@@ -7,23 +7,26 @@
 
 import SwiftUI
 
-public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Content : View {
+public struct CustomTitlebar<TitlebarContent, WindowContent> : View
+where TitlebarContent : View, WindowContent : View {
     @EnvironmentObject var window: ObservableWindowDelegate
     
     private let height: CGFloat
     private let showDivider: Bool
     private let ignoreIsKeyWindow: Bool
-    private let titlebar: Titlebar
-    private let content: Content
+    private let titlebar: TitlebarContent
+    private let content: WindowContent
     
     public init(
-        titlebar: Titlebar,
+        titlebar: TitlebarContent,
         withToolbar: Bool = false,
         showDivider: Bool = true,
         ignoreIsKeyWindow: Bool = false,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> WindowContent
     ) {
-        self.height = withToolbar ? 52.0 : 28.0
+        self.height = withToolbar
+            ? Titlebar.height.withToolbar
+            : Titlebar.height.withoutToolbar
         self.showDivider = showDivider
         self.ignoreIsKeyWindow = ignoreIsKeyWindow
         self.titlebar = titlebar
@@ -68,7 +71,7 @@ struct CustomTitlebar_Previews: PreviewProvider {
             Text("Hello, World!")
         }
         .preferredColorScheme(.light)
-        .padding(.top, 28.0)
+        .padding(.top, Titlebar.height.withoutToolbar)
         
         CustomTitlebar(
             titlebar: Text("Titlebar"),
@@ -78,6 +81,6 @@ struct CustomTitlebar_Previews: PreviewProvider {
         }
         .environmentObject(ObservableWindowDelegate())
         .preferredColorScheme(.dark)
-        .padding(.top, 52.0)
+        .padding(.top, Titlebar.height.withToolbar)
     }
 }
