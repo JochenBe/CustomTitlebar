@@ -18,7 +18,7 @@ where TitlebarContent : View, WindowContent : View {
     private let content: WindowContent
     
     public init(
-        titlebar: TitlebarContent,
+        _ titlebar: TitlebarContent,
         withToolbar: Bool = false,
         showDivider: Bool = true,
         ignoreIsKeyWindow: Bool = false,
@@ -64,7 +64,7 @@ where TitlebarContent : View, WindowContent : View {
 struct CustomTitlebar_Previews: PreviewProvider {
     static var previews: some View {
         CustomTitlebar(
-            titlebar: Text("Titlebar"),
+            Text("Titlebar"),
             showDivider: false,
             ignoreIsKeyWindow: true
         ) {
@@ -74,7 +74,7 @@ struct CustomTitlebar_Previews: PreviewProvider {
         .padding(.top, Titlebar.height.withoutToolbar)
         
         CustomTitlebar(
-            titlebar: Text("Titlebar"),
+            Text("Titlebar"),
             withToolbar: true
         ) {
             Text("Hello, World!")

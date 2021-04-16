@@ -1,6 +1,6 @@
 # CustomTitlebar
 
-Create custom titlebars for your SwiftUI applications.
+Create **custom titlebars** for your **SwiftUI** applications.
 
 ## Requirements
 
@@ -12,14 +12,13 @@ Add `https://github.com/JochenBe/CustomTitlebar` in the [Swift Package Manager].
 
 ## Usage
 
-**_CustomTitlebar_** uses an _[observable]_ version of _[NSWindowDelegate]_
-called **_[ObservableWindowDelegate]_** to lower the **opacity** of the
-_titlebar_ when the _window_ **resigns key**. This
-**_[ObservableWindowDelegate]_** is passed down using _[environment objects]_.
-If you do not wish to use this feature, pass
+**_CustomTitlebar_** uses an _observable_ version of _NSWindowDelegate_ called
+**_ObservableWindowDelegate_** to lower the opacity of the titlebar when the
+window _resigns key_. This **_ObservableWindowDelegate_** is passed down using
+_environment objects_. If you do _not_ wish to use this feature, pass
 `ignoreIsKeyWindow: true` to your **_CustomTitlebar_** instance.
 
-Initiating and passing down the **_[ObservableWindowDelegate]_**:
+Initiating and passing down the **_ObservableWindowDelegate_**:
 
 ```Swift
 myWindowDelegate = ObservableWindowDelegate()
@@ -37,9 +36,14 @@ CustomTitlebar(MyCustomTitlebar()) {
 }
 ```
 
+For more **configuration options** check the
+[**_CustomTitlebar_** reference](#customtitlebar-1).
+
 ## Reference
 
 ### CustomTitlebar
+
+A **SwiftUI View** aligning your **custom titlebar**.
 
 ```Swift
 init(
@@ -53,6 +57,8 @@ init(
 
 ### Titlebar
 
+An object containing **titlebar constants**.
+
 ```Swift
 struct Titlebar {
     struct height {
@@ -63,6 +69,8 @@ struct Titlebar {
 ```
 
 ### ObservableWindowDelegate
+
+An **_observable_** version of **_NSWindowDelegate_**.
 
 ```Swift
 class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
@@ -75,8 +83,5 @@ class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
 
 ```
 
-[swift package manager]: (https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
-[observable]: https://developer.apple.com/documentation/combine/observableobject
-[nswindowdelegate]: https://developer.apple.com/documentation/appkit/nswindowdelegate
-[observablewindowdelegate]: #observablewindowdelegate
-[environment objects]: https://developer.apple.com/documentation/swiftui/environmentobject
+[swift package manager]: https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app
+[customtitlebar reference]: #customtitlebar-1
