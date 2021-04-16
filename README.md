@@ -1,3 +1,3 @@
 # CustomTitlebar
 
-A description of this package.
+Create custom titlebars in your SwiftUI applications.
