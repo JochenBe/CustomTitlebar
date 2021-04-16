@@ -26,7 +26,6 @@ struct TitlebarDivider: View {
     }
 }
 
-@available(OSX 11.0, *)
 struct TitlebarDivider_Previews: PreviewProvider {
     static var previews: some View {
         TitlebarDivider()

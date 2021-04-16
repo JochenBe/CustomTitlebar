@@ -48,7 +48,6 @@ public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Con
     }
 }
 
-@available(OSX 11.0, *)
 struct CustomTitlebar_Previews: PreviewProvider {
     static var previews: some View {
         CustomTitlebar(titlebar: Text("Titlebar"), showDivider: false) {
