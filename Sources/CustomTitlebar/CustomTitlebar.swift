@@ -8,6 +8,8 @@
 import SwiftUI
 
 public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Content : View {
+    @Environment(\.window) var window
+    
     private let height: CGFloat
     private let showDivider: Bool
     private let titlebar: Titlebar
@@ -34,6 +36,7 @@ public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Con
                 VStack {
                     titlebar
                         .frame(width: geometry.size.width, height: height)
+                        .opacity(window.isKeyWindow ? 1 : 0.5)
                         .padding(.top, -height)
                     
                     if (showDivider) {
@@ -59,6 +62,7 @@ struct CustomTitlebar_Previews: PreviewProvider {
         CustomTitlebar(titlebar: Text("Titlebar"), withToolbar: true) {
             Text("Hello, World!")
         }
+        .window(ObservableWindowDelegate())
         .preferredColorScheme(.dark)
         .padding(.top, 52.0)
     }
