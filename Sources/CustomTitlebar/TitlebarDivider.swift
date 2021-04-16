@@ -11,7 +11,7 @@ struct TitlebarDivider: View {
     @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
-        let fillColor = colorScheme == .dark ? Color.black : Color.black.opacity(0.25)
+        let fillColor = colorScheme == .dark ? Color.black : Color.black.opacity(0.15)
         
         VStack {
             Rectangle()
@@ -19,7 +19,7 @@ struct TitlebarDivider: View {
                 .frame(height: 0.5)
             
             Rectangle()
-                .fill(fillColor.opacity(0.25))
+                .fill(fillColor.opacity(0.3))
                 .frame(height: 0.5)
                 .padding(.top, -8)
         }

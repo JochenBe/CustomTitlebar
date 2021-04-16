@@ -9,15 +9,18 @@ import SwiftUI
 
 public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Content : View {
     private let height: CGFloat
+    private let showDivider: Bool
     private let titlebar: Titlebar
     private let content: Content
     
     public init(
         titlebar: Titlebar,
         withToolbar: Bool = false,
+        showDivider: Bool = true,
         @ViewBuilder content: () -> Content
     ) {
         self.height = withToolbar ? 52.0 : 28.0
+        self.showDivider = showDivider
         self.titlebar = titlebar
         self.content = content()
     }
@@ -33,8 +36,10 @@ public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Con
                         .frame(width: geometry.size.width, height: height)
                         .padding(.top, -height)
                     
-                    TitlebarDivider()
-                        .padding(.top, -8.0)
+                    if (showDivider) {
+                        TitlebarDivider()
+                            .padding(.top, -8.0)
+                    }
                     
                     Spacer()
                 }
@@ -46,7 +51,7 @@ public struct CustomTitlebar<Titlebar, Content> : View where Titlebar: View, Con
 @available(OSX 11.0, *)
 struct CustomTitlebar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTitlebar(titlebar: Text("Titlebar")) {
+        CustomTitlebar(titlebar: Text("Titlebar"), showDivider: false) {
             Text("Hello, World!")
         }
         .preferredColorScheme(.light)
