@@ -1,4 +1,4 @@
-# CustomTitlebar
+# CustomTitlebar [![Swift](https://github.com/JochenBe/CustomTitlebar/actions/workflows/swift.yml/badge.svg)](https://github.com/JochenBe/CustomTitlebar/actions/workflows/swift.yml)
 
 Create **custom titlebars** for your **SwiftUI** applications.
 
