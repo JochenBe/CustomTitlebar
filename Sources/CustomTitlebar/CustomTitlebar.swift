@@ -25,8 +25,8 @@ where TitlebarContent : View, WindowContent : View {
         @ViewBuilder content: () -> WindowContent
     ) {
         self.height = withToolbar
-            ? TitlebarHeight.withToolbar
-            : TitlebarHeight.withoutToolbar
+            ? TitlebarDimensions.height.withToolbar
+            : TitlebarDimensions.height.withoutToolbar
         self.showDivider = showDivider
         self.ignoreIsKeyWindow = ignoreIsKeyWindow
         self.titlebar = titlebar
@@ -38,6 +38,7 @@ where TitlebarContent : View, WindowContent : View {
             ZStack {
                 content
                     .frame(maxHeight: geometry.size.height)
+                    .clipShape(Rectangle())
                 
                 VStack {
                     titlebar
@@ -71,7 +72,7 @@ struct CustomTitlebar_Previews: PreviewProvider {
             Text("Hello, World!")
         }
         .preferredColorScheme(.light)
-        .padding(.top, TitlebarHeight.withoutToolbar)
+        .padding(.top, TitlebarDimensions.height.withoutToolbar)
         
         CustomTitlebar(
             Text("Titlebar"),
@@ -81,6 +82,6 @@ struct CustomTitlebar_Previews: PreviewProvider {
         }
         .environmentObject(ObservableWindowDelegate())
         .preferredColorScheme(.dark)
-        .padding(.top, TitlebarHeight.withToolbar)
+        .padding(.top, TitlebarDimensions.height.withToolbar)
     }
 }

@@ -23,7 +23,9 @@ Initiating and passing down the **_ObservableWindowDelegate_**:
 ```Swift
 myWindowDelegate = ObservableWindowDelegate()
 myWindow.delegate = myWindowDelegate
-window.contentView = NSHostingView(
+
+myWindow.titlebarAppearsTransparent = true
+myWindow.contentView = NSHostingView(
     rootView: ContentView().environmentObject(myWindowDelegate)
 )
 ```
@@ -37,7 +39,7 @@ CustomTitlebar(MyCustomTitlebar()) {
 ```
 
 For more **configuration options** check the
-[**_CustomTitlebar_** reference](#customtitlebar-1).
+[**_CustomTitlebar_** reference].
 
 ## Reference
 
@@ -55,14 +57,23 @@ init(
 )
 ```
 
-### TitlebarHeight
+### TitlebarDimensions
 
-An object containing **titlebar height constants**.
+An object containing **titlebar dimension constants**.
 
 ```Swift
-struct TitlebarHeight {
-    static var withToolbar: CGFloat { get }
-    static var withoutToolbar: CGFloat { get }
+struct TitlebarDimensions {
+    struct height {
+        static var withToolbar: CGFloat { get }
+        static var withoutToolbar: CGFloat { get }
+    }
+
+    struct padding {
+        struct left {
+            static var withToolbar: CGFloat { get }
+            static var withoutToolbar: CGFloat { get }
+        }
+    }
 }
 ```
 
@@ -82,4 +93,4 @@ class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
 ```
 
 [swift package manager]: https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app
-[customtitlebar reference]: #customtitlebar-1
+[**_customtitlebar_** reference]: #customtitlebar-1
