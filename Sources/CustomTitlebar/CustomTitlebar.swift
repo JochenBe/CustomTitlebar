@@ -13,7 +13,7 @@ where TitlebarContent : View, WindowContent : View {
     @EnvironmentObject private var window: ObservableWindowDelegate
     
     private let height: CGFloat
-    private let showDivider: Bool
+    private let hideDivider: Bool
     private let ignoreIsKeyWindow: Bool
     private let titlebar: TitlebarContent
     private let content: WindowContent
@@ -21,14 +21,14 @@ where TitlebarContent : View, WindowContent : View {
     public init(
         _ titlebar: TitlebarContent,
         withToolbar: Bool = false,
-        showDivider: Bool = true,
+        hideDivider: Bool = false,
         ignoreIsKeyWindow: Bool = false,
         @ViewBuilder content: () -> WindowContent
     ) {
         self.height = withToolbar
             ? TitlebarDimensions.height.withToolbar
             : TitlebarDimensions.height.withoutToolbar
-        self.showDivider = showDivider
+        self.hideDivider = hideDivider
         self.ignoreIsKeyWindow = ignoreIsKeyWindow
         self.titlebar = titlebar
         self.content = content()
@@ -53,7 +53,7 @@ where TitlebarContent : View, WindowContent : View {
                         )
                         .padding(.top, -height)
                     
-                    if (showDivider) {
+                    if (!hideDivider) {
                         TitlebarDivider()
                             .padding(.top, -8.0)
                             .allowsHitTesting(false)
@@ -84,7 +84,7 @@ struct CustomTitlebar_Previews: PreviewProvider {
     static var previews: some View {
         CustomTitlebar(
             Titlebar(),
-            showDivider: false,
+            hideDivider: true,
             ignoreIsKeyWindow: true
         ) {
             Text("Hello, World!")

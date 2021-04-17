@@ -13,12 +13,12 @@ Add `https://github.com/JochenBe/CustomTitlebar` in the [Swift Package Manager].
 ## Usage
 
 **_CustomTitlebar_** uses an _observable_ version of _NSWindowDelegate_ called
-**_ObservableWindowDelegate_** to lower the opacity of the titlebar when the
-window _resigns key_. This **_ObservableWindowDelegate_** is passed down using
-_environment objects_. If you do _not_ wish to use this feature, pass
+[**_ObservableWindowDelegate_**] to lower the opacity of the titlebar when the
+window resigns key. This [**_ObservableWindowDelegate_**] is passed down using
+_environment objects_. If you do not wish to use this feature, pass
 `ignoreIsKeyWindow: true` to your **_CustomTitlebar_** instance.
 
-Initiating and passing down the **_ObservableWindowDelegate_**:
+Initiating and passing down the [**_ObservableWindowDelegate_**]:
 
 ```Swift
 myWindowDelegate = ObservableWindowDelegate()
@@ -38,42 +38,52 @@ CustomTitlebar(MyCustomTitlebar()) {
 }
 ```
 
-For more **configuration options** check the
+For more information about the **configuration options**, check the
 [**_CustomTitlebar_** reference].
 
 ## Reference
 
 ### CustomTitlebar
 
-A **SwiftUI View** aligning your **custom titlebar**.
+A **SwiftUI View** aligning your **custom titlebar** and **window content**.
+
+#### Configuration Options
+
+- _\_ **titlebar**: TitleBarContent_
+
+  The contents of the titlebar.
+
+- _**withToolbar**: Bool = **false**_
+
+  Whether the titlebar contains a toolbar or not. This will result in a taller
+  titlebar.
+
+- _**hideDivider**: Bool = **false**_
+
+  Whether the divider between the titlebar and the window content should be
+  hidden.
+
+- _**ignoreIsKeyWindow**: Bool = **false**_
+
+  Whether **_isKeyWindow_** should be ignored or not. Setting this to **_true_**
+  allows you to not pass an [**_ObservableWindowDelegate_**].
+
+- _**content**: () -> WindowContent_
+
+  The contents of the window.
 
 ```Swift
-init(
-    titlebar: View,
-    withToolbar: Bool = false,
-    showDivider: Bool = true,
-    ignoreIsKeyWindow: Bool = false,
-    @ViewBuilder content: () -> View
-)
-```
+struct CustomTitlebar<TitlebarContent, WindowContent> : View
+where TitlebarContent : View, WindowContent : View {
+    init(
+        _ titlebar: TitlebarContent,
+        withToolbar: Bool = false,
+        hideDivider: Bool = false,
+        ignoreIsKeyWindow: Bool = false,
+        @ViewBuilder content: () -> WindowContent
+    )
 
-### TitlebarDimensions
-
-An object containing **titlebar dimension constants**.
-
-```Swift
-struct TitlebarDimensions {
-    struct height {
-        static var withToolbar: CGFloat { get }
-        static var withoutToolbar: CGFloat { get }
-    }
-
-    struct padding {
-        struct left {
-            static var withToolbar: CGFloat { get }
-            static var withoutToolbar: CGFloat { get }
-        }
-    }
+    var body: some View { get set }
 }
 ```
 
@@ -81,18 +91,44 @@ struct TitlebarDimensions {
 
 An **_observable_** version of **_NSWindowDelegate_**.
 
+#### Configuration Options
+
+- _\_ **isKeyWindow**: Bool = **false**_
+
+  The initial value of **_isKeyWindow_**.
+
 ```Swift
 class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
     @Published var isKeyWindow: Bool { get }
 
-    init(_ isKeyWindow: Bool?)
+    init(_ isKeyWindow: Bool = false)
 
     func windowDidBecomeKey(_ notification: Notification)
 
     func windowDidResignKey(_ notification: Notification)
 }
+```
 
+### TitlebarDimensions
+
+An object containing **constant titlebar dimensions**.
+
+```Swift
+struct TitlebarDimensions {
+    struct height {
+        static var withoutToolbar: CGFloat { get }
+        static var withToolbar: CGFloat { get }
+    }
+
+    struct padding {
+        struct left {
+            static var withoutToolbar: CGFloat { get }
+            static var withToolbar: CGFloat { get }
+        }
+    }
+}
 ```
 
 [swift package manager]: https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app
 [**_customtitlebar_** reference]: #customtitlebar-1
+[**_observablewindowdelegate_**]: #observablewindowdelegate
