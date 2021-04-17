@@ -1,10 +1,10 @@
 # CustomTitlebar [![Swift](https://github.com/JochenBe/CustomTitlebar/actions/workflows/swift.yml/badge.svg)](https://github.com/JochenBe/CustomTitlebar/actions/workflows/swift.yml)
 
-Create **custom titlebars** for your **SwiftUI** applications.
+Create custom titlebars for your SwiftUI applications.
 
 ## Requirements
 
-- **macOS 11.0**+
+- macOS 11.0+
 
 ## Installation
 
@@ -12,13 +12,13 @@ Add `https://github.com/JochenBe/CustomTitlebar` in the [Swift Package Manager].
 
 ## Usage
 
-**_CustomTitlebar_** uses an _observable_ version of _NSWindowDelegate_ called
-[**_ObservableWindowDelegate_**] to lower the opacity of the titlebar when the
-window resigns key. This [**_ObservableWindowDelegate_**] is passed down using
-_environment objects_. If you do not wish to use this feature, pass
-`ignoreIsKeyWindow: true` to your **_CustomTitlebar_** instance.
+[CustomTitlebar] uses an [observable] version of [NSWindowDelegate] called
+[ObservableWindowDelegate] to lower the opacity of the titlebar when the window
+resigns key. This [ObservableWindowDelegate] is passed down using
+[environment objects]. If you do not wish to use this feature, pass
+`ignoreIsKeyWindow: true` to your [CustomTitlebar] instance.
 
-Initiating and passing down the [**_ObservableWindowDelegate_**]:
+Initiating and passing down the [ObservableWindowDelegate]:
 
 ```Swift
 myWindowDelegate = ObservableWindowDelegate()
@@ -30,7 +30,7 @@ myWindow.contentView = NSHostingView(
 )
 ```
 
-Using the **_CustomTitlebar_**:
+Using the [CustomTitlebar]:
 
 ```Swift
 CustomTitlebar(MyCustomTitlebar()) {
@@ -38,39 +38,29 @@ CustomTitlebar(MyCustomTitlebar()) {
 }
 ```
 
-For more information about the **configuration options**, check the
-[**_CustomTitlebar_** reference].
+For more information about the parameters, check the
+[CustomTitlebar reference].
 
 ## Reference
 
 ### CustomTitlebar
 
-A **SwiftUI View** aligning your **custom titlebar** and **window content**.
+A SwiftUI [View] aligning your custom titlebar and window content.
 
-#### Configuration Options
+#### Parameters
 
-- _\_ **titlebar**: TitleBarContent_
+- **titlebar**: The contents of the titlebar.
 
-  The contents of the titlebar.
+- **withToolbar**: Whether the titlebar contains a toolbar. This will
+  result in a taller titlebar.
 
-- _**withToolbar**: Bool = **false**_
+- **hideDivider**: Whether the divider between the titlebar and the window
+  content should be hidden.
 
-  Whether the titlebar contains a toolbar or not. This will result in a taller
-  titlebar.
+- **ignoreIsKeyWindow**: Whether isKeyWindow should be ignored. Setting
+  this to true allows you to not pass an [ObservableWindowDelegate].
 
-- _**hideDivider**: Bool = **false**_
-
-  Whether the divider between the titlebar and the window content should be
-  hidden or not.
-
-- _**ignoreIsKeyWindow**: Bool = **false**_
-
-  Whether **_isKeyWindow_** should be ignored or not. Setting this to **_true_**
-  allows you to not pass an [**_ObservableWindowDelegate_**].
-
-- _**content**: () -> WindowContent_
-
-  The contents of the window.
+- **content**: The contents of the window.
 
 ```Swift
 struct CustomTitlebar<TitlebarContent, WindowContent> : View
@@ -80,25 +70,23 @@ where TitlebarContent : View, WindowContent : View {
         withToolbar: Bool = false,
         hideDivider: Bool = false,
         ignoreIsKeyWindow: Bool = false,
-        @ViewBuilder content: () -> WindowContent
+        content: () -> WindowContent
     )
 
-    var body: some View { get set }
+    var body: some View { get }
 }
 ```
 
 ### ObservableWindowDelegate
 
-An **_observable_** version of **_NSWindowDelegate_**.
+An [observable] version of [NSWindowDelegate].
 
-#### Configuration Options
+#### Parameters
 
-- _\_ **isKeyWindow**: Bool = **false**_
-
-  The initial value of **_isKeyWindow_**.
+- **isKeyWindow**: The initial value of isKeyWindow.
 
 ```Swift
-class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
+class ObservableWindowDelegate : NSObject, NSWindowDelegate, ObservableObject {
     @Published var isKeyWindow: Bool { get }
 
     init(_ isKeyWindow: Bool = false)
@@ -111,24 +99,29 @@ class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
 
 ### TitlebarDimensions
 
-An object containing **constant titlebar dimensions**.
+An object containing constant titlebar dimensions.
 
 ```Swift
 struct TitlebarDimensions {
     struct height {
-        static var withoutToolbar: CGFloat { get }
-        static var withToolbar: CGFloat { get }
+        static let withoutToolbar: CGFloat
+        static let withToolbar: CGFloat
     }
 
     struct padding {
         struct left {
-            static var withoutToolbar: CGFloat { get }
-            static var withToolbar: CGFloat { get }
+            static let withoutToolbar: CGFloat
+            static let withToolbar: CGFloat
         }
     }
 }
 ```
 
 [swift package manager]: https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app
-[**_customtitlebar_** reference]: #customtitlebar-1
-[**_observablewindowdelegate_**]: #observablewindowdelegate
+[customtitlebar]: #customtitlebar
+[observable]: https://developer.apple.com/documentation/combine/observableobject
+[nswindowdelegate]: https://developer.apple.com/documentation/appkit/nswindowdelegate
+[observablewindowdelegate]: #observablewindowdelegate
+[environment objects]: https://developer.apple.com/documentation/swiftui/environmentobject
+[customtitlebar reference]: #customtitlebar
+[view]: https://developer.apple.com/documentation/swiftui/view
