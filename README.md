@@ -85,6 +85,8 @@ An **_observable_** version of **_NSWindowDelegate_**.
 class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
     @Published var isKeyWindow: Bool { get }
 
+    init(_ isKeyWindow: Bool?)
+
     func windowDidBecomeKey(_ notification: Notification)
 
     func windowDidResignKey(_ notification: Notification)
