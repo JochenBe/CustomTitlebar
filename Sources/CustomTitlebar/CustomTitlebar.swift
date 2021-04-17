@@ -9,7 +9,8 @@ import SwiftUI
 
 public struct CustomTitlebar<TitlebarContent, WindowContent> : View
 where TitlebarContent : View, WindowContent : View {
-    @EnvironmentObject var window: ObservableWindowDelegate
+    @Environment(\.colorScheme) private var colorScheme
+    @EnvironmentObject private var window: ObservableWindowDelegate
     
     private let height: CGFloat
     private let showDivider: Bool
@@ -42,20 +43,37 @@ where TitlebarContent : View, WindowContent : View {
                 
                 VStack {
                     titlebar
-                        .frame(width: geometry.size.width, height: height)
+                        .frame(width: .infinity, height: height)
                         .opacity(
                             ignoreIsKeyWindow
                                 ? 1
-                                : window.isKeyWindow ? 1 : 0.5
+                                : window.isKeyWindow
+                                ? 1
+                                :0.4
                         )
                         .padding(.top, -height)
                     
                     if (showDivider) {
                         TitlebarDivider()
                             .padding(.top, -8.0)
+                            .allowsHitTesting(false)
                     }
                     
                     Spacer()
+                        .allowsHitTesting(false)
+                }
+                
+                if (!ignoreIsKeyWindow && !window.isKeyWindow) {
+                    VStack {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: .infinity, height: height)
+                            .opacity(0.05)
+                            .padding(.top, -height)
+                        
+                        Spacer()
+                    }
+                    .allowsHitTesting(false)
                 }
             }
         }
@@ -65,23 +83,23 @@ where TitlebarContent : View, WindowContent : View {
 struct CustomTitlebar_Previews: PreviewProvider {
     static var previews: some View {
         CustomTitlebar(
-            Text("Titlebar"),
+            Titlebar(),
             showDivider: false,
             ignoreIsKeyWindow: true
         ) {
             Text("Hello, World!")
         }
-        .preferredColorScheme(.light)
         .padding(.top, TitlebarDimensions.height.withoutToolbar)
+        .preferredColorScheme(.light)
         
         CustomTitlebar(
-            Text("Titlebar"),
+            Titlebar(),
             withToolbar: true
         ) {
             Text("Hello, World!")
         }
-        .environmentObject(ObservableWindowDelegate())
-        .preferredColorScheme(.dark)
         .padding(.top, TitlebarDimensions.height.withToolbar)
+        .environmentObject(ObservableWindowDelegate(true))
+        .preferredColorScheme(.dark)
     }
 }
