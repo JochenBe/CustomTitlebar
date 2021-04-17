@@ -43,7 +43,7 @@ where TitlebarContent : View, WindowContent : View {
                 
                 VStack {
                     titlebar
-                        .frame(width: .infinity, height: height)
+                        .frame(width: geometry.size.width, height: height)
                         .opacity(
                             ignoreIsKeyWindow
                                 ? 1
@@ -67,7 +67,7 @@ where TitlebarContent : View, WindowContent : View {
                     VStack {
                         Rectangle()
                             .fill(Color.gray)
-                            .frame(width: .infinity, height: height)
+                            .frame(width: geometry.size.width, height: height)
                             .opacity(0.05)
                             .padding(.top, -height)
                         
