@@ -61,7 +61,7 @@ A **SwiftUI View** aligning your **custom titlebar** and **window content**.
 - _**hideDivider**: Bool = **false**_
 
   Whether the divider between the titlebar and the window content should be
-  hidden.
+  hidden or not.
 
 - _**ignoreIsKeyWindow**: Bool = **false**_
 
