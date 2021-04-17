@@ -49,7 +49,7 @@ where TitlebarContent : View, WindowContent : View {
                                 ? 1
                                 : window.isKeyWindow
                                 ? 1
-                                :0.4
+                                : 0.4
                         )
                         .padding(.top, -height)
                     
@@ -99,7 +99,7 @@ struct CustomTitlebar_Previews: PreviewProvider {
             Text("Hello, World!")
         }
         .padding(.top, TitlebarDimensions.height.withToolbar)
-        .environmentObject(ObservableWindowDelegate(true))
+        .environmentObject(ObservableWindowDelegate())
         .preferredColorScheme(.dark)
     }
 }

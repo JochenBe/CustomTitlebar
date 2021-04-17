@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Titlebar: View {
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         Text("Titlebar")
