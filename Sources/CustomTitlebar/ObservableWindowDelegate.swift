@@ -14,7 +14,7 @@ import SwiftUI
  */
 public class ObservableWindowDelegate: NSObject, NSWindowDelegate, ObservableObject {
     /// A Boolean value that indicates whether the window is the key window for the application.
-    @Published public var isKeyWindow: Bool
+    @Published private(set) public var isKeyWindow: Bool
     
     /**
      Initializes a new `ObservableWindowDelegate`.

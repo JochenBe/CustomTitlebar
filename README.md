@@ -87,7 +87,8 @@ An [observable] version of [NSWindowDelegate].
 
 ```Swift
 class ObservableWindowDelegate : NSObject, NSWindowDelegate, ObservableObject {
-    @Published var isKeyWindow: Bool { get }
+    /// A Boolean value that indicates whether the window is the key window for the application.
+    var isKeyWindow: Bool { get }
 
     init(_ isKeyWindow: Bool = false)
 
