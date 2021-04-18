@@ -7,7 +7,11 @@
 
 import Foundation
 
-/// An object containing constant titlebar dimensions.
+/**
+ An object containing constant titlebar dimensions.
+ 
+ [Open Reference](https://github.com/JochenBe/CustomTitlebar#titlebardimensions)
+*/
 public struct TitlebarDimensions {
     private init() {}
     

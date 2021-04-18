@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-/// A SwiftUI View aligning your custom titlebar and window content.
+/**
+ A SwiftUI View aligning your custom titlebar and window content.
+ 
+ [Open Reference](https://github.com/JochenBe/CustomTitlebar#customtitlebar)
+*/
 public struct CustomTitlebar<TitlebarContent, WindowContent>: View
 where TitlebarContent : View, WindowContent : View {
     @Environment(\.colorScheme) private var colorScheme
@@ -20,15 +24,17 @@ where TitlebarContent : View, WindowContent : View {
     private let content: WindowContent
     
     /**
-     Initializes a new CustomTitlebar instance.
+     Initializes a new `CustomTitlebar` instance.
      
      - Parameters:
         - titlebar: The contents of the titlebar.
         - withToolbar: Whether the titlebar contains a toolbar. This will result in a taller titlebar.
         - hideDivider: Whether the divider between the titlebar and the window content should be hidden.
-        - ignoreIsKeyWindow: Whether isKeyWindow should be ignored. Setting this to true allows you to not pass an ObservableWindowDelegate.
+        - ignoreIsKeyWindow: Whether `isKeyWindow` should be ignored. Setting this to `true` allows you to not pass an ObservableWindowDelegate.
         - content: The contents of the window.
-     */
+     
+     [Open Reference](https://github.com/JochenBe/CustomTitlebar#customtitlebar)
+    */
     public init(
         _ titlebar: TitlebarContent,
         withToolbar: Bool = false,

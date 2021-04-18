@@ -49,18 +49,18 @@ A SwiftUI [View] aligning your custom titlebar and window content.
 
 #### Parameters
 
-- **titlebar**: The contents of the titlebar.
+- `titlebar`: The contents of the titlebar.
 
-- **withToolbar**: Whether the titlebar contains a toolbar. This will
+- `withToolbar`: Whether the titlebar contains a toolbar. This will
   result in a taller titlebar.
 
-- **hideDivider**: Whether the divider between the titlebar and the window
+- `hideDivider`: Whether the divider between the titlebar and the window
   content should be hidden.
 
-- **ignoreIsKeyWindow**: Whether isKeyWindow should be ignored. Setting
-  this to true allows you to not pass an [ObservableWindowDelegate].
+- `ignoreIsKeyWindow`: Whether `isKeyWindow` should be ignored. Setting
+  this to `true` allows you to not pass an [ObservableWindowDelegate].
 
-- **content**: The contents of the window.
+- `content`: The contents of the window.
 
 ```Swift
 struct CustomTitlebar<TitlebarContent, WindowContent> : View
@@ -83,7 +83,7 @@ An [observable] version of [NSWindowDelegate].
 
 #### Parameters
 
-- **isKeyWindow**: The initial value of isKeyWindow.
+- `isKeyWindow`: The initial value of `isKeyWindow`.
 
 ```Swift
 class ObservableWindowDelegate : NSObject, NSWindowDelegate, ObservableObject {
@@ -103,14 +103,21 @@ An object containing constant titlebar dimensions.
 
 ```Swift
 struct TitlebarDimensions {
+    /// An object containing constant titlebar heights.
     struct height {
+        /// The height of a statusbar without toolbar.
         static let withoutToolbar: CGFloat
+        /// The height of a statusbar with toolbar.
         static let withToolbar: CGFloat
     }
 
+    /// An object containing constant titlebar paddings.
     struct padding {
+        /// An object containing constant titlebar left paddings.
         struct left {
+            /// The left padding of a titlebar without toolbar.
             static let withoutToolbar: CGFloat
+            /// The left padding of a titlebar with toolbar.
             static let withToolbar: CGFloat
         }
     }
