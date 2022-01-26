@@ -38,9 +38,4 @@ final class CustomTitlebarTests: XCTestCase {
         XCTAssertEqual(TitlebarDimensions.padding.left.withoutToolbar, CGFloat(68.0))
         XCTAssertEqual(TitlebarDimensions.padding.left.withToolbar, CGFloat(92.0))
     }
-    
-    static var allTests = [
-        ("testObservableWindowDelegate", testObservableWindowDelegate),
-        ("testTitlebarDimensions", testTitlebarDimensions),
-    ]
 }
